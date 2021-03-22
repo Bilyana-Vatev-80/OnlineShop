@@ -1,7 +1,8 @@
 package onlineShop.models.products.computers;
 
 public class DesktopComputer extends BaseComputer{
-    public DesktopComputer(int id, String manufacturer, String model, double price, double overallPerformance) {
-        super(id, manufacturer, model, price, overallPerformance);
+    public static final int DEFAULT_PERFORMANCE = 15;
+    public DesktopComputer(int id, String manufacturer, String model, double price) {
+        super(id, manufacturer, model, price,DEFAULT_PERFORMANCE);
     }
 }
