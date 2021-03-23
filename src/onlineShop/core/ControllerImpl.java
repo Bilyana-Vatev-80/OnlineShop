@@ -160,7 +160,8 @@ public class ControllerImpl implements Controller {
     @Override
     public String getComputerData(int id) {
         checkComputerID(id);
-        return null;
+
+        return computers.get(id).toString();
     }
     private void checkComputerID(int id){
         if(!this.computers.containsKey(id)){

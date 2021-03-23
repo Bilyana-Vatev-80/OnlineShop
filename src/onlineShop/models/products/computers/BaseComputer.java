@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static onlineShop.common.constants.ExceptionMessages.*;
+import static onlineShop.common.constants.OutputMessages.COMPUTER_COMPONENTS_TO_STRING;
+import static onlineShop.common.constants.OutputMessages.COMPUTER_PERIPHERALS_TO_STRING;
 
 public abstract class BaseComputer extends BaseProduct implements Computer{
     private List<Component> components;
@@ -109,6 +111,26 @@ public abstract class BaseComputer extends BaseProduct implements Computer{
 
     @Override
     public String toString() {
-        return "BaseComputer{}";
+        StringBuilder builder = new StringBuilder(super.toString());
+        builder.append(System.lineSeparator());
+
+        builder.append(String.format(" " + COMPUTER_COMPONENTS_TO_STRING,components.size()));
+
+        builder.append(System.lineSeparator());
+
+        for (Component component : components) {
+            builder.append("  ").append(component.toString()).append(System.lineSeparator());
+        }
+
+
+        builder.append(String.format(" " + COMPUTER_PERIPHERALS_TO_STRING,peripherals.size(),peripherals.stream()
+        .mapToDouble(Peripheral::getOverallPerformance).average().orElse(0)));
+
+        builder.append(System.lineSeparator());
+
+        for (Peripheral peripheral : peripherals) {
+            builder.append("  ").append(peripheral.toString()).append(System.lineSeparator());
+        }
+        return builder.toString().trim();
     }
 }

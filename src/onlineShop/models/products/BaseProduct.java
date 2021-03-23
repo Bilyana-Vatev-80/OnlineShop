@@ -3,6 +3,7 @@ package onlineShop.models.products;
 import java.util.Locale;
 
 import static onlineShop.common.constants.ExceptionMessages.*;
+import static onlineShop.common.constants.OutputMessages.PRODUCT_TO_STRING;
 
 public abstract class BaseProduct implements Product{
     private int id;
@@ -78,8 +79,11 @@ public abstract class BaseProduct implements Product{
     public double getOverallPerformance() {
         return this.overallPerformance;
     }
+
     @Override
     public String toString(){
-        return "BaseProduct";
+        return String.format(PRODUCT_TO_STRING, getOverallPerformance(),
+                getPrice(),this.getClass().getSimpleName(),
+                getManufacturer(),getModel(),getId());
     }
 }
